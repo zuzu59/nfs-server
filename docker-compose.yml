@@ -1,0 +1,17 @@
+#zf210524.1636
+#source: https://stackoverflow.com/questions/39204142/docker-compose-with-multiple-databases
+
+version: '3.3'
+
+services:
+    nas:
+        image: itsthenetwork/nfs-server-alpine:latest
+        container_name: nas
+        volumes:
+            - ./nfs_share:/nfsshare
+        restart: always
+        environment:
+            SHARED_DIRECTORY: /nfsshare
+        ports:
+            - "2049:2049"
+        privileged: true
